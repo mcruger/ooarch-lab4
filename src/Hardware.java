@@ -10,36 +10,40 @@ import java.util.Timer;
  */
 public class Hardware implements HardwareFacade {
 
-    private double mAirPressure;
-    private double mAirRunTime;
-    private double mElectricalCurrent;
-    private double mElecRunTime;
+    private int mAirPressure;
+    private int mAirRunTime;
+    private int mElectricalCurrent;
+    private int mElecRunTime;
     private boolean mIsHardwareRunning;
-    private static final double AIR_PRESSURE_MIN = 0;
-    private static final double AIR_PRESSURE_MAX = 200;
-    private static final double ELECTRICAL_CURRENT_MIN = 0;
-    private static final double ELECTRICAL_CURRENT_MAX = 200;
-    private static final double TIME_MIN = 0;
-    private static final double TIME_MAX = 100;
+    private int mPartSize;
+    private static final int AIR_PRESSURE_MIN = 0;
+    private static final int AIR_PRESSURE_MAX = 200;
+    private static final int ELECTRICAL_CURRENT_MIN = 0;
+    private static final int ELECTRICAL_CURRENT_MAX = 200;
+    private static final int TIME_MIN = 0;
+    private static final int TIME_MAX = 100;
 
     public Hardware() {
         //init everything to 0 so it's like we just turned the 'hardware' on
-        this.mAirPressure = 0.0;
+        this.mAirPressure = 0;
         this.mAirRunTime = 0;
-        this.mElectricalCurrent = 0.0;
+        this.mElectricalCurrent = 0;
         this.mElecRunTime = 0;
+        this.mPartSize = 0;
         this.mIsHardwareRunning = false;
     }
 
     @Override
-    public void setControlValues(ArrayList<Double> controlValues) {
+    public void setControlValues(ArrayList<Integer> controlValues) {
 
         //assume controlValues contains control vals in same order every time
         //order: [air_pressure, air_run_time, elec_current, elec_run_time]
-        double airPressure = controlValues.get(0);
-        double airTime = controlValues.get(1);
-        double elecCur = controlValues.get(2);
-        double elecTime = controlValues.get(3);
+        int airPressure = controlValues.get(0);
+        int airTime = controlValues.get(1);
+        int elecCur = controlValues.get(2);
+        int elecTime = controlValues.get(3);
+        int partSize = controlValues.get(4);
+
 
         //check bounds of control values
         if (airPressure < AIR_PRESSURE_MIN){
@@ -74,13 +78,14 @@ public class Hardware implements HardwareFacade {
     }
 
     @Override
-    public ArrayList<Double> getControlValues() {
+    public ArrayList<Integer> getControlValues() {
         //same order as values were sent in as
-        ArrayList<Double> controlValues = new ArrayList<Double>();
+        ArrayList<Integer> controlValues = new ArrayList<Integer>();
         controlValues.add(mAirPressure);
         controlValues.add(mAirRunTime);
         controlValues.add(mElectricalCurrent);
         controlValues.add(mElecRunTime);
+        controlValues.add(mPartSize);
 
         return controlValues;  //To change body of implemented methods use File | Settings | File Templates.
     }

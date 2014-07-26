@@ -15,16 +15,17 @@ public class Driver {
 
         //create an instance of UI and make it work
         UserInterface ui = new UserInterface();
-        ArrayList<Double> testVals1 = new ArrayList<Double>();
-        testVals1.add(1.0);
-        testVals1.add(2.0);
-        testVals1.add(3.0);
-        testVals1.add(4.0);
+        ArrayList<Integer> testVals1 = new ArrayList<Integer>();
+        testVals1.add(1);
+        testVals1.add(2);
+        testVals1.add(3);
+        testVals1.add(4);
+        testVals1.add(10);
         ui.setControlValues(testVals1);
 
-        ArrayList<Double> returnedVales = ui.getControlValues();
+        ArrayList<Integer> returnedVales = ui.getControlValues();
 
-        for (Double val : returnedVales){
+        for (int val : returnedVales){
 
             System.out.println(val);
 

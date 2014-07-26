@@ -9,7 +9,9 @@ import java.util.ArrayList;
  */
 public interface UserInterfaceFacade {
 
-    public void setControlValues(ArrayList<Double> controlValues);
-    public ArrayList<Double> getControlValues();
+    public void setControlValues(ArrayList<Integer> controlValues);
+    public ArrayList<Integer> getControlValues();
+    public void manualRun();
+    public void executeRecipe();
 
 }

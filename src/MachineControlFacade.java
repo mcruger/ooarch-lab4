@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public interface MachineControlFacade {
 
-    public void setControlValues(ArrayList<Double> controlValues);
-    public ArrayList<Double> getControlValues();
+    public void setControlValues(ArrayList<Integer> controlValues);
+    public ArrayList<Integer> getControlValues();
     public void turnHardwareOn();
     public void turnHardwareOff();
 

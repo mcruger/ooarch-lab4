@@ -10,13 +10,14 @@ import java.util.ArrayList;
 public class MachineControl implements MachineControlFacade{
 
     Hardware mHardwareLayer;
+    int mPartSize;
 
     public MachineControl() {
         this.mHardwareLayer = new Hardware();
     }
 
     @Override
-    public void setControlValues(ArrayList<Double> controlValues) {
+    public void setControlValues(ArrayList<Integer> controlValues) {
         //send control values on to hardware layer
         mHardwareLayer.setControlValues(controlValues);
     }

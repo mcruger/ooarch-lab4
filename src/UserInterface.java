@@ -22,7 +22,7 @@ public class UserInterface implements UserInterfaceFacade {
     }
 
     @Override
-    public void setControlValues(ArrayList<Double> controlValues) {
+    public void setControlValues(ArrayList<Integer> controlValues) {
         //pass control values on to control layer
         mMachineControlLayer.setControlValues(controlValues);
     }
@@ -30,5 +30,15 @@ public class UserInterface implements UserInterfaceFacade {
     @Override
     public ArrayList getControlValues() {
         return mMachineControlLayer.getControlValues();
+    }
+
+    @Override
+    public void manualRun() {
+
+    }
+
+    @Override
+    public void executeRecipe() {
+
     }
 }

@@ -9,6 +9,7 @@ public class RampStrategy implements RecipeStrategy {
 
     //member vars
 
+
     public RampStrategy(){
 
     }
