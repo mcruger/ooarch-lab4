@@ -82,7 +82,7 @@ public class Hardware implements HardwareFacade {
         controlValues.add(mElectricalCurrent);
         controlValues.add(mElecRunTime);
 
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return controlValues;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

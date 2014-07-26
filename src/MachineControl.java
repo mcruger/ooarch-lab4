@@ -11,6 +11,10 @@ public class MachineControl implements MachineControlFacade{
 
     Hardware mHardwareLayer;
 
+    public MachineControl() {
+        this.mHardwareLayer = new Hardware();
+    }
+
     @Override
     public void setControlValues(ArrayList<Double> controlValues) {
         //send control values on to hardware layer
