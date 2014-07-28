@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 
 /**
@@ -11,39 +12,31 @@ import java.util.Timer;
 public class Hardware implements HardwareFacade {
 
     private int mAirPressure;
-    private int mAirRunTime;
     private int mElectricalCurrent;
-    private int mElecRunTime;
+    private int mRunTime;
     private boolean mIsHardwareRunning;
-    private int mPartSize;
     private static final int AIR_PRESSURE_MIN = 0;
     private static final int AIR_PRESSURE_MAX = 200;
     private static final int ELECTRICAL_CURRENT_MIN = 0;
     private static final int ELECTRICAL_CURRENT_MAX = 200;
-    private static final int TIME_MIN = 0;
     private static final int TIME_MAX = 100;
 
     public Hardware() {
         //init everything to 0 so it's like we just turned the 'hardware' on
         this.mAirPressure = 0;
-        this.mAirRunTime = 0;
         this.mElectricalCurrent = 0;
-        this.mElecRunTime = 0;
-        this.mPartSize = 0;
+        this.mRunTime = 0;
         this.mIsHardwareRunning = false;
     }
 
     @Override
-    public void setControlValues(ArrayList<Integer> controlValues) {
+    public void setControlValues(ControlValues controlValues) {
 
         //assume controlValues contains control vals in same order every time
         //order: [air_pressure, air_run_time, elec_current, elec_run_time]
-        int airPressure = controlValues.get(0);
-        int airTime = controlValues.get(1);
-        int elecCur = controlValues.get(2);
-        int elecTime = controlValues.get(3);
-        int partSize = controlValues.get(4);
-
+        int airPressure = controlValues.getmAirPressure();
+        int elecCur = controlValues.getmElecCurrent();
+        int runTime = controlValues.getmRunTime();
 
         //check bounds of control values
         if (airPressure < AIR_PRESSURE_MIN){
@@ -58,45 +51,33 @@ public class Hardware implements HardwareFacade {
         if (elecCur > ELECTRICAL_CURRENT_MAX){
             elecCur = ELECTRICAL_CURRENT_MAX;
         }
-        if (airTime < TIME_MIN){
-            airTime = TIME_MIN;
-        }
-        if (airTime > TIME_MAX){
-            airTime = TIME_MAX;
-        }
-        if (elecTime < TIME_MIN){
-            elecTime = TIME_MIN;
-        }
-        if (elecTime > TIME_MAX){
-            elecTime = TIME_MAX;
+        if (runTime > TIME_MAX){
+            runTime = TIME_MAX;
         }
 
         mAirPressure = airPressure;
-        mAirRunTime = airTime;
         mElectricalCurrent = elecCur;
-        mElecRunTime = elecTime;
+        mRunTime = runTime;
     }
 
     @Override
-    public ArrayList<Integer> getControlValues() {
+    public ControlValues getControlValues() {
         //same order as values were sent in as
-        ArrayList<Integer> controlValues = new ArrayList<Integer>();
-        controlValues.add(mAirPressure);
-        controlValues.add(mAirRunTime);
-        controlValues.add(mElectricalCurrent);
-        controlValues.add(mElecRunTime);
-        controlValues.add(mPartSize);
 
+        //ArrayList<Integer> controlValues = new ArrayList<Integer>();
+        ControlValues controlValues = new ControlValues(mAirPressure, mElectricalCurrent, mRunTime);
         return controlValues;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void turnHardwareOn() {
         mIsHardwareRunning = true;
+
     }
 
     @Override
     public void turnHardwareOff() {
         mIsHardwareRunning = false;
+
     }
 }

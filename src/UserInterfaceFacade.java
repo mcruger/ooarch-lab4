@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,9 +10,12 @@ import java.util.ArrayList;
  */
 public interface UserInterfaceFacade {
 
-    public void setControlValues(ArrayList<Integer> controlValues);
-    public ArrayList<Integer> getControlValues();
-    public void manualRun();
-    public void executeRecipe();
+    //public void setControlValues(ArrayList<Integer> controlValues);
+    public void setControlValues(ControlValues controlValues);
+    //public ArrayList<Integer> getControlValues();
+    public ControlValues getControlValues();
+    public String manualRun();
+    //public String executeRecipe(Enum mode);
+    public String executeRecipe(String recipeName);
 
 }

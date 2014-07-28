@@ -9,10 +9,11 @@ import java.util.ArrayList;
  */
 public interface MachineControlFacade {
 
-    public void setControlValues(ArrayList<Integer> controlValues);
-    public ArrayList<Integer> getControlValues();
-    public void turnHardwareOn();
+    //public void setControlValues(ArrayList<Integer> controlValues);
+    public void setControlValues(ControlValues controlValues);
+    //public ArrayList<Integer> getControlValues();
+    public ControlValues getControlValues();
+    public String turnHardwareOn();
     public void turnHardwareOff();
-
-
+    public String executeRecipe(String recipeName);
 }

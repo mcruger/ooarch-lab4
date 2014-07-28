@@ -9,10 +9,13 @@ import java.util.ArrayList;
  */
 public interface HardwareFacade {
 
-    public void setControlValues(ArrayList<Integer> controlValues);
-    public ArrayList<Integer> getControlValues();
+    //public void setControlValues(ArrayList<Integer> controlValues);
+    public void setControlValues(ControlValues controlValues);
+    //public ArrayList<Integer> getControlValues();
+    public ControlValues getControlValues();
     public void turnHardwareOn();
     public void turnHardwareOff();
+    //public void runHardware(); //method to run the hardware after modifying settings etc
 
 
 }

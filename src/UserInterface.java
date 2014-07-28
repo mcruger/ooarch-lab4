@@ -22,23 +22,28 @@ public class UserInterface implements UserInterfaceFacade {
     }
 
     @Override
-    public void setControlValues(ArrayList<Integer> controlValues) {
+    public void setControlValues(ControlValues controlValues) {
         //pass control values on to control layer
         mMachineControlLayer.setControlValues(controlValues);
     }
 
     @Override
-    public ArrayList getControlValues() {
+    public ControlValues getControlValues() {
         return mMachineControlLayer.getControlValues();
     }
 
     @Override
-    public void manualRun() {
-
+    public String manualRun() {
+        mMachineControlLayer.setmMode(MachineMode.MANUAL);
+        String output = mMachineControlLayer.turnHardwareOn();
+        return output;
     }
 
     @Override
-    public void executeRecipe() {
-
+    public String executeRecipe(String recipeName) {
+        return mMachineControlLayer.executeRecipe(recipeName);
+        /*mMachineControlLayer.setmMode(mode);
+        String output = mMachineControlLayer.turnHardwareOn();
+       return output;*/
     }
 }
