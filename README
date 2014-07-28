@@ -1,1 +1,19 @@
-This file was created by IntelliJ IDEA 12.1.6 for binding GitHub repository
+My solution should be mostly straight forward. I did have some trouble with figuring out where the file writing
+should live. Originally, I had the DAS files being written from the Hardware layer, but I had to add an additional
+method that wasn't listed in the assignment, so I ended up moving the DAS file writing to the MachineControl layer to
+try and keep to the assignment sheet.
+
+I used a pojo to pass my control values because I thought it was easier/cleaner than using a hash or array list.
+
+I used integers instead of a clock and real seconds. The actual clock portion didn't seem central to the assignment,
+and just using ints as units of time vs full seconds gives me the same results without the wait.
+
+I have a couple methods in my facades that I didn't need to implement, but I decided to leave them in
+to show that the functionality can be accessed from each facade.
+
+To build:
+make clean
+make all
+
+To run:
+java Driver
