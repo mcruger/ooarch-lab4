@@ -45,14 +45,19 @@ public class ConstantCurrentStrategy implements RecipeStrategy {
             mHardware.setControlValues(new ControlValues(mPSI, mAmps, TIME));
 
             //adjust control values per second
-            while(timeElapsed < TIME){
+            while(timeElapsed <= TIME){
+
+                ControlValues values = mHardware.getControlValues();
+                writer.println(timeElapsed + "," + values.getmAirPressure() + "," + values.getmElecCurrent());
+
+                timeElapsed++;
+
                 if (mPSI > PSI_MIN){
                     mPSI = 50 - (timeElapsed * 2);
                 }
                 mHardware.setControlValues(new ControlValues(mPSI, mAmps, TIME));
-                ControlValues values = mHardware.getControlValues();
-                writer.println(timeElapsed + "," + values.getmAirPressure() + "," + values.getmElecCurrent());
-                timeElapsed++;
+
+
             }
 
             writer.close();

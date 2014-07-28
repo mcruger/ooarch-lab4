@@ -33,7 +33,7 @@ public class ConstantPressureStrategy implements RecipeStrategy {
     public void runRecipe() {
         int timeElapsed = 0;
         try {
-            PrintWriter writer = new PrintWriter(STRATEGY + ".DAS.csv", "UTF-8");
+            PrintWriter writer = new PrintWriter(mRecipeFileName + ".DAS.csv", "UTF-8");
             writer.println(mRecipeLine);
 
             //turn hardware on and run it for time specified in control value
@@ -43,12 +43,17 @@ public class ConstantPressureStrategy implements RecipeStrategy {
             mHardware.setControlValues(new ControlValues(mPSI, mAmps, TIME));
 
             //adjust control values per second
-            while(timeElapsed < TIME){
-                mAmps = timeElapsed * 2;
-                mHardware.setControlValues(new ControlValues(mPSI, mAmps, TIME));
+            while(timeElapsed <= TIME){
+
                 ControlValues values = mHardware.getControlValues();
                 writer.println(timeElapsed + "," + values.getmAirPressure() + "," + values.getmElecCurrent());
+
                 timeElapsed++;
+
+                mAmps = timeElapsed * 2;
+                mHardware.setControlValues(new ControlValues(mPSI, mAmps, TIME));
+
+
             }
 
             writer.close();

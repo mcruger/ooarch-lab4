@@ -13,53 +13,42 @@ public class Driver {
 
     public static void main(String[] args){
 
-        //create an instance of UI and make it work
+        //create an instance of UI
         UserInterface ui = new UserInterface();
-/*        ArrayList<Integer> testVals1 = new ArrayList<Integer>();
-        testVals1.add(1);
-        testVals1.add(2);
-        testVals1.add(3);
-        testVals1.add(4);
-        testVals1.add(1); //part size for recipes
-        ui.setControlValues(testVals1);
 
-        ArrayList<Integer> returnedVales = ui.getControlValues();
-
-        for (int val : returnedVales){
-            System.out.println(val);
-        }*/
-
-
-
-
+        //setup manual run tests
         System.out.println("Running manual test...");
         System.out.println("Setting vals");
         ControlValues values = new ControlValues(1,2,10,10);
-        ControlValues returnedValues = ui.getControlValues();
-        System.out.println("Getting vals:");
-        System.out.println(returnedValues.getmAirPressure());
-        System.out.println("Getting vals:");
-        System.out.println(returnedValues.getmElecCurrent());
         ui.setControlValues(values);
+        ControlValues returnedValues = ui.getControlValues();
+        System.out.println("Vals from Hardware:");
+        System.out.println(returnedValues.getmAirPressure());
+        System.out.println(returnedValues.getmElecCurrent());
+        System.out.println("Manual run output:");
         String output3 = ui.manualRun();
+        System.out.println(output3 + System.lineSeparator());
 
-
-
-        System.out.println("Running Ramp test receipt...");
+        //set up recipe run tests
+        System.out.println("Running Ramp test recipe...");
         String output = ui.executeRecipe("LAB4_Ramp.csv");
         System.out.println(output + System.lineSeparator());
 
-        System.out.println("Running Ramp test receipt with < 50 size...");
+        System.out.println("Running Ramp test recipe with < 50 part size...");
         String output4 = ui.executeRecipe("LAB4_Ramp_bad.csv");
         System.out.println(output4 + System.lineSeparator());
 
-        System.out.println("Running ConstantCurrent test receipt...");
+        System.out.println("Running ConstantCurrent test recipe...");
         String output1 = ui.executeRecipe("LAB4_ConstantCurrent.csv");
         System.out.println(output1 + System.lineSeparator());
 
-        System.out.println("Running ConstantPressure test receipt...");
+        System.out.println("Running ConstantPressure test recipe...");
         String output2 = ui.executeRecipe("LAB4_recipe1.csv");
         System.out.println(output2 + System.lineSeparator());
+
+        System.out.println("Running ConstantCurrent test recipe w/ bad reference file...");
+        String output5 = ui.executeRecipe("LAB4_ConstantCurrent_bad.csv");
+        System.out.println(output5 + System.lineSeparator());
 
 
     }

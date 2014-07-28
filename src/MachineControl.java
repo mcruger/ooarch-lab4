@@ -90,8 +90,8 @@ public class MachineControl implements MachineControlFacade{
                 //turn hardware on and run it for time specified in control value
                 int elapsedTime = 0;
                 int runTime = mHardwareLayer.getControlValues().getmRunTime();
-                System.out.println(runTime);
-                while (elapsedTime < runTime){
+               // System.out.println(runTime);
+                while (elapsedTime <= runTime){
                     ControlValues values = mHardwareLayer.getControlValues();
                     writer.println(elapsedTime + "," + values.getmAirPressure() + "," + values.getmElecCurrent());
                     elapsedTime++;
@@ -108,17 +108,9 @@ public class MachineControl implements MachineControlFacade{
         }else{
             if (mMode == MachineMode.CONSTANT_CURRENT){
                 runRecipe(new ConstantCurrentStrategy(mPartSize, mHardwareLayer, mRecipeFirstLine, mRecipeFile));
-                return "Constant current strategy completed. Check " + mRecipeFile + ".DAS.csv";
             }
             if (mMode == MachineMode.CONSTANT_PRESSURE){
                 runRecipe(new ConstantPressureStrategy(mPartSize, mHardwareLayer, mRecipeFirstLine, mRecipeFile));
-                compareFiles = compareFiles(mRecipeFile);
-
-                if (compareFiles){
-                    return "Good part created. Check " + mRecipeFile + ".DAS.csv";
-                }else{
-                    return "BAD PART! Check " + mRecipeFile + ".DAS.csv";
-                }
             }
             if (mMode == MachineMode.RAMP){
                 if (mPartSize < 50){
